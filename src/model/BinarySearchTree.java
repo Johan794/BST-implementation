@@ -122,12 +122,13 @@ public class BinarySearchTree <T extends Comparable<T>>implements IBinarySearchT
 
     @Override
     public Node<T> successor(Node<T> current) {
-        if(current!=null){
-            return min(current.getRight());
-        }else {
-            throw new NullPointerException("Not able to find successor for a null node");
+        if(current.getRight() != null){
+            return current.getRight();
+        }else if(current.getParent().getValue().compareTo(current.getValue()) > 0){
+            return current.getParent();
+        }else{
+            return current.getParent().getParent();
         }
-
     }
 
     @Override

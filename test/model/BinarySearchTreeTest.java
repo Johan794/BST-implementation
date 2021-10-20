@@ -15,6 +15,16 @@ public class BinarySearchTreeTest {
         tree.addNode(3);
         tree.addNode(5);
     }
+
+    public void setup3() {
+        tree = new BinarySearchTree<>();
+        tree.addNode(3);
+        tree.addNode(5);
+        tree.addNode(1);
+        tree.addNode(2);
+        tree.addNode(7);
+        tree.addNode(8);
+    }
     @Test
     public void addNode1(){
         setup1();
@@ -36,4 +46,19 @@ public class BinarySearchTreeTest {
         assertTrue(tree.search(5)!=null);
     }
 
+    @Test
+    public void successor1(){
+        setup3();
+        assertEquals(3, tree.successor(tree.search(2)).getValue());
+    }
+    @Test
+    public void successor2(){
+        setup3();
+        assertEquals(7, tree.successor(tree.search(5)).getValue());
+    }
+    @Test
+    public void successor3(){
+        setup3();
+        assertEquals(5, tree.successor(tree.search(3)).getValue());
+    }
 }
