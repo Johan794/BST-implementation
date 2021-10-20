@@ -30,6 +30,10 @@ public class BinarySearchTreeTest {
         assertEquals(1,tree.getWeight());
     }
 
-
+    @Test
+    public void search(){
+        setup2();
+        assertTrue(tree.search(5)!=null);
+    }
 
 }
