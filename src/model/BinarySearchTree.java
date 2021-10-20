@@ -123,7 +123,7 @@ public class BinarySearchTree <T extends Comparable<T>>implements IBinarySearchT
     @Override
     public Node<T> successor(Node<T> current) {
         if(current.getRight() != null){
-            return current.getRight();
+            return min(current.getRight());
         }else if(current.getParent().getValue().compareTo(current.getValue()) > 0){
             return current.getParent();
         }else{
@@ -139,6 +139,15 @@ public class BinarySearchTree <T extends Comparable<T>>implements IBinarySearchT
             return node;
         }
 
+    }
+
+    @Override
+    public Node<T> max(Node<T> node){
+        if(node.getRight()!=null){
+            return min(node.getRight());
+        }else{
+            return node;
+        }
     }
 
     public String printInOrder(){
