@@ -3,6 +3,8 @@ package model;
 public class BinarySearchTree <T extends Comparable<T>>implements IBinarySearchTree<T>{
     private Node<T> root;
     private String treeInfo;
+    private int weight;
+    private int height;
 
     public BinarySearchTree() {
        treeInfo = "";
@@ -41,6 +43,8 @@ public class BinarySearchTree <T extends Comparable<T>>implements IBinarySearchT
     @Override
     public void delete(T element) {
         Node<T> toDelete = search(root,element);
+        System.out.println("Raiz: "+root.getValue());
+        System.out.println("El que se elimina: "+toDelete.getValue());
         delete(toDelete);
 
     }
@@ -55,11 +59,17 @@ public class BinarySearchTree <T extends Comparable<T>>implements IBinarySearchT
             if(toDelete.getLeft() == null && toDelete.getRight()== null){
                 if(toDelete.getParent()!=null){
                     Node<T>aux = toDelete.getParent();
-                    if(aux.getLeft().equals(toDelete)){
-                        toDelete.getParent().setLeft(null);
-                    }else{
+                    System.out.println("padre: "+aux.getValue());
+                    if(aux.getLeft() != null ){
+                        if(aux.getLeft().equals(toDelete)){
+                            toDelete.getParent().setLeft(null);
+                        }else{
+                            toDelete.getParent().setRight(null);
+                        }
+                    }else if(aux.getRight()!=null){
                         toDelete.getParent().setRight(null);
                     }
+
                   //  System.out.println("No tiene hijos entonces entra acá");
                     toDelete.setParent(null);
                     //System.out.println(toDelete.getParent());
@@ -143,6 +153,23 @@ public class BinarySearchTree <T extends Comparable<T>>implements IBinarySearchT
         if(node!=null){
             printInOrder(node.getLeft());
             treeInfo+=node.getValue()+" ";
+            printInOrder(node.getRight());
+        }
+    }
+
+    public int getWeight(){
+        weight = 0;
+        if(root!=null) {
+            getWeight(root);
+        }
+
+        return weight;
+    }
+
+    private void getWeight(Node<T> node){
+        if(node!=null){
+            printInOrder(node.getLeft());
+            weight++;
             printInOrder(node.getRight());
         }
     }

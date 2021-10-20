@@ -26,9 +26,10 @@ public class BinarySearchTreeTest {
     public void delete(){
         setup2();
         tree.delete(5);
-        System.out.println(tree.printInOrder());
-        assertTrue(tree.isEmpty());
+        System.out.println("Luego de borrar "+tree.printInOrder());
+        assertEquals(1,tree.getWeight());
     }
+
 
 
 }
