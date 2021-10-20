@@ -45,6 +45,11 @@ public class BinarySearchTree <T extends Comparable<T>>implements IBinarySearchT
 
     }
 
+    @Override
+    public boolean isEmpty() {
+        return(root == null);
+    }
+
     private void delete(Node<T> toDelete){
         if(toDelete!=null){
             if(toDelete.getLeft() == null && toDelete.getRight()== null){
@@ -139,10 +144,22 @@ public class BinarySearchTree <T extends Comparable<T>>implements IBinarySearchT
             printInOrder(node.getLeft());
             treeInfo+=node.getValue()+" ";
             printInOrder(node.getRight());
-
         }
+    }
 
+    public Node<T> getRoot() {
+        return root;
+    }
 
+    public void setRoot(Node<T> root) {
+        this.root = root;
+    }
 
+    public String getTreeInfo() {
+        return treeInfo;
+    }
+
+    public void setTreeInfo(String treeInfo) {
+        this.treeInfo = treeInfo;
     }
 }
